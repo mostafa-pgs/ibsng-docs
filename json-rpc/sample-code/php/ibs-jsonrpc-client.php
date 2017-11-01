@@ -128,6 +128,19 @@ class IBSjsonrpcClient {
             "to_del_attrs"=>array()
         ));
     }
+    
+    function deleteUserCustomField($user_id, $field_name){
+        return $this->sendRequest("user.updateUserAttrs", array(
+            "user_id"=>(string)$user_id,
+            "attrs"=>array(
+                "custom_fields" => array(
+                    array(),
+                    array("custom_field_$field_name"),
+                ),
+            ),
+            "to_del_attrs"=>array()
+        ));
+    }
 
     function deleteUserAttribute($user_id, $attr_name){
         return $this->sendRequest("user.updateUserAttrs", array(
